@@ -1,0 +1,29 @@
+{
+  "name": "s-sever",
+  "version": "1.0.0",
+  "description": "static server",
+  "main": "index.js",
+  "bin": {
+    "ssv": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node "
+  },
+  "repository": "git+https://dukegod@github.com/dukegod/s-sever.git",
+  "keywords": [
+    "node",
+    "commander"
+  ],
+  "author": "dukegod",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dukegod/s-sever/issues"
+  },
+  "homepage": "https://github.com/dukegod/s-sever#readme",
+  "dependencies": {
+    "commander": "^2.15.1",
+    "koa": "^2.5.1",
+    "koa-static": "^4.0.3"
+  }
+}
