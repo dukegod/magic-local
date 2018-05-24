@@ -1,0 +1,2 @@
+# s-sever
+static server
