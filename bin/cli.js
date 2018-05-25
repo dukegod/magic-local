@@ -22,7 +22,7 @@ program
   .parse(process.argv);
 
 //  帮助文档
-console.log('文件目录', computerInfo.para);
+// console.log('文件目录', computerInfo.para);
 
 if (!computerInfo.para) {
   program.help();

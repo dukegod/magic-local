@@ -1,6 +1,6 @@
 {
   "name": "s-sever",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "static server",
   "main": "index.js",
   "bin": {
