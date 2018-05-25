@@ -1,12 +1,17 @@
-# s-sever
-static server
 
-参考文档：
+static files server
 
-https://blog.csdn.net/u011249920/article/details/54891882
+### install
 
-https://segmentfault.com/a/1190000002918295
+```js
+npm i s-sever -g
+```
 
-https://github.com/tj/serve
+### Usage
 
-https://github.com/tj/commander.js
+```js
+// current
+ssv ./
+//  absolute dir
+ssv ./example
+```
