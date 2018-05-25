@@ -3,13 +3,21 @@
  */
 const koa = require('koa');
 const koaStatic = require('koa-static');
+const path = require('path');
+
 
 const app = new koa();
 
-module.exports = function (params) {
-  console.log('params', params);
+// console.log(__dirname);
 
-  app.use(koaStatic(params));
+
+module.exports = function (params) {
+  console.log('params', path.join(params));
+
+  app.use(koaStatic(path.join(params)));
+  app.use( async ( ctx ) => {
+    ctx.body = 'welcome'
+  })
   app.listen(9999);
   console.log(params);
   console.log('在端口9999启动了');
