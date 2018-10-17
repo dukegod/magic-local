@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 const program = require('commander');
+const chalk = require('chalk');
 const path = require('path');
 
 const package = require('../libs/package-version');
-const computerInfo = require('../libs/parse-args');
+const computerInfo = require('../libs/computer-args');
 const sever = require('../libs/serve');
 
 // console.log(path.dirname(__filename))
@@ -32,17 +33,20 @@ if (computerInfo.para.indexOf('./') !== -1) {
   // 获取路径信息
   let staticpath = path.resolve(program.args.shift() || '.');
   staticpath = staticpath + '/' + program.root;
-  console.log('获取路径信息', staticpath);
+  // console.log('获取路径信息', staticpath);
   sever(staticpath);
 }
 
 // 输出版本信息
 function exeVersion() {
   console.log(package.version);
-  // return package.version
 }
-
+// 输出os相关的信息
 function exeInfo() {
-  console.log(computerInfo);
-  // return computerInfo
+  for (const key in computerInfo) {
+    if (computerInfo.hasOwnProperty(key)&& key!== 'para') {
+      const element = `${chalk.red(key)} : ${computerInfo[key]}`;
+      console.log(element)
+    }
+  }
 }
