@@ -7,6 +7,7 @@ const path = require('path');
 const package = require('../libs/package-version');
 const computerInfo = require('../libs/computer-args');
 const sever = require('../libs/serve');
+const staticServe = require('../libs/static-serve')
 
 // console.log(path.dirname(__filename))
 
@@ -26,16 +27,24 @@ program
 // console.log('文件目录', computerInfo.para);
 
 if (!computerInfo.para) {
-  program.help();
-}
-
-if (computerInfo.para.indexOf('./') !== -1) {
-  // 获取路径信息
+  // program.help();
   let staticpath = path.resolve(program.args.shift() || '.');
   staticpath = staticpath + '/' + program.root;
   // console.log('获取路径信息', staticpath);
-  sever(staticpath);
+  // sever(staticpath);
+  // console.log(ssver.serve);
+  staticServe.serve(staticpath)
 }
+
+// if (computerInfo.para.indexOf('./') !== -1) {
+//   // 获取路径信息
+//   let staticpath = path.resolve(program.args.shift() || '.');
+//   staticpath = staticpath + '/' + program.root;
+//   // console.log('获取路径信息', staticpath);
+//   // sever(staticpath);
+//   // console.log(ssver.serve);
+//   staticServe.serve(staticpath)
+// }
 
 // 输出版本信息
 function exeVersion() {
