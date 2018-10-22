@@ -17,7 +17,7 @@ const computerInfo = {
   interhost: os.networkInterfaces().en0[1].address,
   pid: process.pid,
   nodeVersion: process.version,
-  para: process.argv.slice(2)[0],
+  para: process.argv,
 }
 
 module.exports = computerInfo;
