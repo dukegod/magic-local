@@ -5,6 +5,8 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
+const chalk = require('chalk');
+const computerInfo = require('./computer-info');
 
 const mimeTypes = {
   css: 'text/css',
@@ -19,30 +21,31 @@ const mimeTypes = {
 const options = {
   port: 9999,
   root: '/',
-  expire: true,
-  etag: true,
-  lastModifiec: true,
-  gzip: true
 };
 
 class StaticServe {
-  constructor() {
-    this.expire = true;
+  constructor(opts = {}) {
+    // console.log(opts)
+    this.root = opts.root || options.root;
+    this.port = opts.port || options.port;
+    this.serve();
   }
   // 服务器启动
-  serve(root, port) {
-    this.root = root || options.root;
-    this.port = port || options.port;
+  serve() {
     http
       .createServer((req, res) => {
-        this.router(root, req, res);
+        this.router(this.root, req, res);
       })
       .listen(this.port, err => {
         if (err) {
           console.error(err);
           console.info('not get file');
         }
-        console.info(`server run at port : ${this.port}`);
+        console.info(`
+          ${chalk.red('server run at port')} : http://${computerInfo.localhost}:${this.port}
+          ${chalk.red('server run at port')} : http://${computerInfo.interhost}:${this.port}
+          `
+        );
       });
   }
   /**
@@ -69,11 +72,11 @@ class StaticServe {
       }
     });
   }
-  //  404
+  //  404与favicon文件处理
   responseNotFound(err, res) {
     // 处理favico文件
     if (err && err.path.indexOf('favicon.ico')) {
-      const favicon = new Buffer(
+      const favicon = new Buffer.from(
         'AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREQAAAAAAEAAAEAAAAAEAAAABAAAAEAAAAAAQAAAQAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD8HwAA++8AAPf3AADv+wAA7/sAAP//AAD//wAA+98AAP//AAD//wAA//8AAP//AAD//wAA',
         'base64'
       );
@@ -97,6 +100,7 @@ class StaticServe {
   // 处理目录文件
   responseRedirect(req, res) {
     const location = req.url + '/';
+    console.log(301, location)
     res.writeHead(301, {
       Location: location,
       'Content-Type': 'text/html'
@@ -151,4 +155,4 @@ class StaticServe {
   }
 }
 
-module.exports = new StaticServe();
+module.exports = StaticServe;

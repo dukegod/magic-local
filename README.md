@@ -10,8 +10,6 @@ npm i s-sever -g
 ### Usage
 
 ```js
-// current
-ssv ./
-//  absolute dir
-ssv ./example
+// defalt port 9999
+ssv ./ -p 1234
 ```
