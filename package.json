@@ -23,8 +23,6 @@
   "homepage": "https://github.com/dukegod/s-sever#readme",
   "dependencies": {
     "chalk": "^2.4.1",
-    "commander": "^2.15.1",
-    "koa": "^2.5.1",
-    "koa-static": "^4.0.3"
+    "commander": "^2.15.1"
   }
 }
