@@ -2,8 +2,8 @@
  * 解析字符串
  */
 const os = require('os')
-const secondToDay = require('./utils').secondToDay
-const byteToMb = require('./utils').byteToMb
+
+import { secondToDay, byteToMb } from'./utils'
 
 const computerInfo = {
   hostname: os.hostname(),
@@ -19,6 +19,4 @@ const computerInfo = {
   nodeVersion: process.version,
 }
 
-module.exports = computerInfo;
-
-
+export = computerInfo;

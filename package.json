@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node "
+    "build": "node ",
+    "ts": "./node_modules/.bin/tsc --watch",
+    "tser": "./node_modules/.bin/tsserver"
   },
   "repository": "git+https://dukegod@github.com/dukegod/s-sever.git",
   "keywords": [
@@ -24,5 +26,9 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.15.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.10",
+    "typescript": "^3.5.2"
   }
 }
